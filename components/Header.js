@@ -1,43 +1,53 @@
 import React from 'react'
 import Link from 'next/link'
+import { NextResponse, NextRequest } from 'next/server'
+import { Avatar } from '@mui/material';
 
-let textInput = React.createRef();
 
 
-const style={
-    wrapper:'bg-[#04111d] w-screen p-[1.2rem] py-[5.8rem]',
-    logoText: 'ml-[0.8rem] text-white font-semibold text-2xl',
-    wrapper2:'bg-[#04111s] p-[1.2rem] py-[10.8rem]',
-    searchinput: 'h-[2.6rem] w-full border-0 bg-[#ffffff] outline-0 borderRadius-5',
-    buttonClass : 'h-[2.6rem] border-0 bg-[#ffffff] outline-0 borderRadius-5'
+const style = {
+  wrapper: 'bg-[#04111d] w-screen p-[1.2rem] py-[1.0rem]',
+  logoText: 'ml-[0.8rem] p-[0.8rem] text-white font-semibold text-2xl',
+ 
 }
 
 export const Header = () => {
-    const fetchData = async () => {
-        console.log(textInput.current.value)
-        // const req = await fetch('https://randomuser.me/api/?gender=male&results=100');
-    };
-
-    const handleClick = (event) => {
-        event.preventDefault();
-        fetchData();
-    };
+  
   return (
     <div className={style.wrapper}>
-        <Link href='/'>
+      <div className='inline'>
+      <Link href='/'>
         <div className={style.logoText}>
-            value.app
+          value.app
         </div>
-  
-        </Link>
+       
+      </Link>
 
-        <div className={style.wrapper2}>
-        <input ref={textInput} className={style.searchinput}/>
-        <button className={style.buttonClass} onClick={handleClick}>FETCH DATA</button>
+      <div className='avatar'>
+        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+        </div>
+        </div>
+      <style global jsx>{`
+        body {
+          background: #04111d;
+        }
+        .inline{
+          display:flex;
+          flex-direction:row;
+        }
+        .avatar{
+          float:right;
+          align-items:flex-end;
+          position:absolute;
+          right:10px;
+          padding-top:10px;
+          padding-right:30px;
+        }
 
-</div>
+      `}</style>
 
     </div>
-   
+
+
   )
 }
