@@ -75,7 +75,7 @@ const style = {
 
 export async function getStaticProps({ params }) {
   const id = params.id
-  const res = await fetch("https://deep-index.moralis.io/api/v2/0x75e3e9c92162e62000425c98769965a76c2e387a/nft?chain=mainnet&format=decimal", {
+  const res = await fetch("https://deep-index.moralis.io/api/v2/"+ id +"/nft?chain=mainnet&format=decimal", {
     method: 'get',
     headers: new Headers({
       'accept': 'application/json',
@@ -116,7 +116,7 @@ export default function DetialPage({ value }) {
       <div>
         <Box component="span" sx={{ p: 2 }}>
           <div className='counts'><span className='textcounts'>MIN VALUE</span><h1>{19262.2}</h1></div>
-        </Box>
+</Box>
       </div>
       <div className={style.wrapper}>
         <center>
