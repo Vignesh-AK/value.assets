@@ -7,6 +7,7 @@ import { SearchBox } from '../components/SearchBox'
 
 
 export default function Example() {
+  
   return (
     <div>
     <Header/>

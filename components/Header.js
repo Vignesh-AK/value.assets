@@ -6,7 +6,7 @@ import { Avatar } from '@mui/material';
 
 
 const style = {
-  wrapper: 'bg-[#04111d] w-screen p-[1.2rem] py-[1.0rem]',
+  wrapper: 'bg-[#04111d]',
   logoText: 'ml-[0.8rem] p-[0.8rem] text-white font-semibold text-2xl',
  
 }
