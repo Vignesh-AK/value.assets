@@ -19,27 +19,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
 // const Web3Api = useMoralisWeb3Api();
 // const fetchNativeBalance = async () => {
 //   // get mainnet native balance for the current user
@@ -72,7 +57,7 @@ const style = {
 }
 
 
-
+// fetch the data from moralis api
 export async function getStaticProps({ params }) {
   const id = params.id
   const res = await fetch("https://deep-index.moralis.io/api/v2/"+ id +"/nft?chain=mainnet&format=decimal", {
@@ -108,6 +93,7 @@ export const getStaticPaths = async () => {
 export default function DetialPage({ value }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
+  
   const handleClose = () => setOpen(false);
 
   return (
@@ -122,7 +108,7 @@ export default function DetialPage({ value }) {
         <center>
       <List sx={{ width: '80%', bgcolor: '#323949', color: "#fff", borderRadius:"5px", }}>
       {value.result.map((post) => (
-       
+       <div>
       <ListItem onClick={handleOpen} alignItems="flex-start">
         <ListItemAvatar>
          <Avatar alt="Remy Sharp" src={post.metadata!=null ? JSON.parse(post.metadata).image : "./static/images/download.jpg"}/> 
@@ -143,9 +129,8 @@ export default function DetialPage({ value }) {
             </React.Fragment>
           }
         />
+             
       </ListItem>
-
-      ))}
       <Modal
         open={open}
         onClose={handleClose}
@@ -154,14 +139,23 @@ export default function DetialPage({ value }) {
         className="ModalClass"
       >
         <Box sx={style} className="ModalBox">
+        <IconButton
+          style={{ position: "absolute", top: "0", right: "0", color:"#ffffff" }}
+          onClick={handleClose}
+        >
+          <CloseIcon />
+        </IconButton>
+        <Avatar alt="Remy Sharp" src={post.metadata!=null ? JSON.parse(post.metadata).image : "./static/images/download.jpg"}/>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
+          {post.metadata!=null ? JSON.parse(post.metadata).name : post.name}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+          {post.metadata!=null ? JSON.parse(post.metadata).description : "Nothing"}          </Typography>
         </Box>
       </Modal>
+      </div>
+      ))}
+
     </List>
     </center>
         {/* <div>

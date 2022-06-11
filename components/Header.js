@@ -8,25 +8,25 @@ import { Avatar } from '@mui/material';
 const style = {
   wrapper: 'bg-[#04111d]',
   logoText: 'ml-[0.8rem] p-[0.8rem] text-white font-semibold text-2xl',
- 
+
 }
 
 export const Header = () => {
-  
+
   return (
     <div className={style.wrapper}>
       <div className='inline'>
-      <Link href='/'>
-        <div className={style.logoText}>
-          value.app
-        </div>
-       
-      </Link>
+        <Link href='/'>
+          <div className={style.logoText}>
+            value.app
+          </div>
 
-      <div className='avatar'>
-        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+        </Link>
+
+        <div className='avatar'>
+          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
         </div>
-        </div>
+      </div>
       <style global jsx>{`
         body {
           background: #04111d;
